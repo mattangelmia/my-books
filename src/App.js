@@ -132,7 +132,7 @@ console.log(e.target.value)
       <Link to="/find">SearchBooks</Link>
     
       <Routes>
-      <Route  path='/' element={<><BookShelfs bookList={wantToRead} shelfTitle={'Want to Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs bookList={reading} shelfTitle={'Reading'} selectStatus={selectStatus} getStatus={getStatus}/></> }></Route>
+      <Route  path='/' element={<><BookShelfs selectValue={'wantToRead'} bookList={wantToRead} shelfTitle={'Want to Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs bookList={reading} shelfTitle={'Reading'} selectStatus={selectStatus} getStatus={getStatus}/></> }></Route>
       <Route path='/find' element={<SearchBooks booksLength={booksLength} results={results} searchString={searchString} searchBooks={searchBooks} getBooks={getBooks} isButtonDisabled={isButtonDisabled} />}></Route>
       </Routes>
 

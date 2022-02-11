@@ -19,7 +19,7 @@ const [value, setValue] = useState('')
             <h5>
             {book.title}
             </h5>
-            <select name="books" id="book-select" style={{width: '40px'}} onChange={(e) =>{props.selectStatus(book);props.getStatus(e)}}>
+            <select name="books" id="book-select" value={props.selectValue} style={{width: '40px'}} onChange={(e) =>{props.selectStatus(book);props.getStatus(e)}}>
                 <option value="move" disabled>
             Move to...
           </option>
