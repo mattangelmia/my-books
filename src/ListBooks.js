@@ -3,22 +3,14 @@ import React from 'react'
 
 
 export default function ListBooks(props) {
-
-
-
-
 if(props.booksLength < 1){
-  
-
     return (
         <div>
-            
             <h2>No matching books</h2>
         </div>
     )
 
 }
-
     return (
         
         <div className='container'>

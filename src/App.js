@@ -7,10 +7,43 @@ import {BrowserRouter as Router,Link, Route, Routes} from 'react-router-dom'
 import SearchBooks from './SearchBooks';
 
 function App() {
+const [read, setRead] = useState([
+{
+id: 1,
+title: 'My First Coding Book',
+img: 'http://books.google.com/books/content?id=qbygDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
+}, 
+])
+
+const [reading, setReading] = useState([
+  {
+  id: 2,
+  title: 'Coding For Dummies',
+  img: 'http://books.google.com/books/content?id=gLVKDAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
+  }, 
+  ])
+
+
+  const [wantToRead, setWantToRead] = useState([
+    {
+    id: 3,
+    title: 'Coding Literacy',
+    img: 'http://books.google.com/books/content?id=YXQsDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
+    },
+    {
+      id: 4,
+      title: "Don't Teach Coding",
+      img: 'http://books.google.com/books/content?id=rS7fDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
+      } 
+    ])
+  
+
+
 const [searchString, setSearchString] = useState('')
 const [results, setResults] = useState([])
 const [isButtonDisabled, setIsButtonDisabled] = useState(true)
-
+const [book, setBook] = useState ({})
+const [status, setStatus] = useState("")
 const [booksLength, setBookLength] = useState(0)
 
 
@@ -40,28 +73,69 @@ const searchBooks = (e) =>{
   
   setResults(result.items)
   setBookLength(1)
-  console.log(results)
+  
   console.log(booksLength)
   result.items.map(item=>console.log(item.volumeInfo.title))
   })
   }
 
-  console.log(results)
 
+  const getStatus = (e) =>{
+  setStatus(e.target.value)
+    
+console.log(e.target.value)
+
+  }
+
+
+  const selectStatus = (book) =>{
+    setBook(book)
+    console.log(book)
+   
+ 
+
+  }
+
+
+
+  if(reading.includes(book) && status==='wantToRead' ){
+      
+    console.log('currently in reading')
+    setReading(reading.filter(books=>books !== book))
+    setWantToRead(wantToRead.concat(book))
+   console.log(status)
+ 
+  }
+  else if(wantToRead.includes(book) && status==='currentlyReading'){
+      setWantToRead(wantToRead.filter(books=>books !== book))
+      setReading(reading.concat(book))
+      
+      
+  }
+
+
+
+
+
+// if(status=== 'wantToRead'){
+//   console.log(true)
+//    setWantToRead(wantToRead.push(book))
+
+// }
+// else{
+//   console.log(false)
+// }
 
   return (
     <div className="App">
       <h1>My Books</h1>
+      <Link to="/find">SearchBooks</Link>
     
       <Routes>
-      <Route  path='/' element={<BookShelfs/>}></Route>
+      <Route  path='/' element={<><BookShelfs bookList={wantToRead} shelfTitle={'Want to Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs bookList={reading} shelfTitle={'Reading'} selectStatus={selectStatus} getStatus={getStatus}/></> }></Route>
       <Route path='/find' element={<SearchBooks booksLength={booksLength} results={results} searchString={searchString} searchBooks={searchBooks} getBooks={getBooks} isButtonDisabled={isButtonDisabled} />}></Route>
       </Routes>
-     
-   
-    
-  
-  
+
     </div>
   );
 }
