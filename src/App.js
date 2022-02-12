@@ -106,13 +106,39 @@ console.log(e.target.value)
    console.log(status)
  
   }
-  else if(wantToRead.includes(book) && status==='currentlyReading'){
-      setWantToRead(wantToRead.filter(books=>books !== book))
-      setReading(reading.concat(book))
+
+  else if(reading.includes(book) && status==='read' ){
       
-      
+    console.log('currently in reading')
+    setReading(reading.filter(books=>books !== book))
+    setRead(read.concat(book))
+   console.log(status)
+ 
   }
 
+
+
+  else if(wantToRead.includes(book) && status==='currentlyReading'){
+      setWantToRead(wantToRead.filter(books=>books !== book))
+      setReading(reading.concat(book))  
+  }
+
+  else if(wantToRead.includes(book) && status==='read'){
+    setWantToRead(wantToRead.filter(books=>books !== book))
+    setRead(read.concat(book))  
+}
+
+
+  else if(read.includes(book) && status==='currentlyReading'){
+    setRead(read.filter(books=>books !== book))
+    setReading(reading.concat(book))
+  }
+
+
+  else if(read.includes(book) && status==='wantToRead'){
+    setRead(read.filter(books=>books !== book))
+    setWantToRead(wantToRead.concat(book))
+  }
 
 
 
@@ -129,11 +155,12 @@ console.log(e.target.value)
   return (
     <div className="App">
       <h1>My Books</h1>
-      <Link to="/find">SearchBooks</Link>
+      <Link to="/find" >SearchBooks</Link>
+     
     
       <Routes>
-      <Route  path='/' element={<><BookShelfs selectValue={'wantToRead'} bookList={wantToRead} shelfTitle={'Want to Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs bookList={reading} shelfTitle={'Reading'} selectStatus={selectStatus} getStatus={getStatus}/></> }></Route>
-      <Route path='/find' element={<SearchBooks booksLength={booksLength} results={results} searchString={searchString} searchBooks={searchBooks} getBooks={getBooks} isButtonDisabled={isButtonDisabled} />}></Route>
+      <Route exact path='/' element={<><BookShelfs selectValue={'read'} bookList={read} shelfTitle={'Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs selectValue={'wantToRead'} bookList={wantToRead} shelfTitle={'Want to Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs bookList={reading} shelfTitle={'Reading'} selectStatus={selectStatus} getStatus={getStatus}/></> }></Route>
+      <Route exact path='/find' element={<SearchBooks booksLength={booksLength} results={results} searchString={searchString} searchBooks={searchBooks} getBooks={getBooks} isButtonDisabled={isButtonDisabled} />}></Route>
       </Routes>
 
     </div>
