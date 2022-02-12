@@ -4,12 +4,8 @@ import {useState} from 'react'
 
 export default function BookShelfs(props) {
 const [value, setValue] = useState('')
-
-  return (
-      
+  return (  
     <div>
-      
-    
          <div style={{borderBottom: '1px solid #dedede', paddingRight: '3%',paddingleft: '3%',margin: '5%'}}>
          <h1>{props.shelfTitle}</h1>
          </div>
@@ -29,14 +25,9 @@ const [value, setValue] = useState('')
           <option onClick={(e)=> console.log(e.target)} value="read">Read</option>
           <option onClick={(e)=> console.log(e.target)} value="none">None</option>
 </select>
-
            </div>  
-              
                    )}
          </div>
-     
-       
     </div>
- 
   )
 }

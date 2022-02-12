@@ -85,27 +85,62 @@ const searchBooks = (e) =>{
     
 console.log(e.target.value)
 
+
+
   }
+
+ 
 
 
   const selectStatus = (book) =>{
     setBook(book)
     console.log(book)
-   
- 
-
+   console.log(status)
   }
 
+
+  const statusUpdate = (e,book)=> {
+    setStatus(e.target.value)
+    console.log(e.target.value)
+    const selectStatus = (book) =>{
+      setBook(book)
+      console.log(book.volumeInfo.imageLinks.smallThumbnail)
+            setWantToRead(wantToRead.concat({id: 5, title: book.volumeInfo.title,img: book.volumeInfo.imageLinks.smallThumbnail}))
+
+     console.log(status)
+    }
+
+    selectStatus(book)
+
+    
+ 
+    
+
+    }
+  
 
 
   if(reading.includes(book) && status==='wantToRead' ){
       
-    console.log('currently in reading')
-    setReading(reading.filter(books=>books !== book))
+     console.log('currently in reading')
+      setReading(reading.filter(books=>books !== book))
     setWantToRead(wantToRead.concat(book))
    console.log(status)
  
   }
+
+  // else if(!reading.includes(book) && status==='currentlyReading' ){
+      
+  //   console.log(book.volumeInfo.title)
+     
+
+  
+ 
+  // }
+
+
+
+
 
   else if(reading.includes(book) && status==='read' ){
       
@@ -140,6 +175,15 @@ console.log(e.target.value)
     setWantToRead(wantToRead.concat(book))
   }
 
+// const getBookName = (book) =>{
+//   console.log('book')
+//   console.log(book)
+// }
+
+// const getStatusName = (e) => {
+//   console.log(e.target.value)
+// }
+
 
 
 
@@ -160,7 +204,7 @@ console.log(e.target.value)
     
       <Routes>
       <Route exact path='/' element={<><BookShelfs selectValue={'read'} bookList={read} shelfTitle={'Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs selectValue={'wantToRead'} bookList={wantToRead} shelfTitle={'Want to Read'} selectStatus={selectStatus} getStatus={getStatus}/><BookShelfs bookList={reading} shelfTitle={'Reading'} selectStatus={selectStatus} getStatus={getStatus}/></> }></Route>
-      <Route exact path='/find' element={<SearchBooks booksLength={booksLength} results={results} searchString={searchString} searchBooks={searchBooks} getBooks={getBooks} isButtonDisabled={isButtonDisabled} />}></Route>
+      <Route exact path='/find' element={<SearchBooks getStatus={statusUpdate}   booksLength={booksLength} results={results} searchString={searchString} searchBooks={searchBooks} getBooks={getBooks} isButtonDisabled={isButtonDisabled} />}></Route>
       </Routes>
 
     </div>

@@ -19,7 +19,7 @@ if(props.booksLength < 1){
                 <div style={{margin:'2Rem'}}>
                     <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="book-cover"></img>
                 <h5>{book.volumeInfo.title}</h5>
-                <select name="books" id="book-select" style={{width: '40px'}}>
+                <select name="books" id="book-select" style={{width: '40px'}} onChange={(e) => {props.getStatus(e,book)}}>
                 <option value="move" disabled>
             Move to...
           </option>

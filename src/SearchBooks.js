@@ -15,7 +15,7 @@ export default function SearchBooks(props) {
       </div>
     </div>
 
-<ListBooks results={props.results} booksLength={props.booksLength}/>
+<ListBooks results={props.results} booksLength={props.booksLength} selectStatus={props.selectStatus} getStatus={props.getStatus}/>
         
     </div>
   )
