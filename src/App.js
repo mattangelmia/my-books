@@ -83,7 +83,6 @@ const searchBooks = (e) =>{
   const getStatus = (e) =>{
   setStatus(e.target.value)
     
-console.log(e.target.value)
 
 
 
@@ -94,23 +93,39 @@ console.log(e.target.value)
 
   const selectStatus = (book) =>{
     setBook(book)
-    console.log(book)
-   console.log(status)
+   
+
   }
 
 
   const statusUpdate = (e,book)=> {
     setStatus(e.target.value)
-    console.log(e.target.value)
+  
     const selectStatus = (book) =>{
       setBook(book)
       console.log(book.volumeInfo.imageLinks.smallThumbnail)
-            setWantToRead(wantToRead.concat({id: 5, title: book.volumeInfo.title,img: book.volumeInfo.imageLinks.smallThumbnail}))
-
-     console.log(status)
+    }
+  
+    selectStatus(book)
+    if(e.target.value==='wantToRead'){
+      console.log('wanna')
+      setWantToRead(wantToRead.concat({id: wantToRead[wantToRead.length-1].id + 1, title: book.volumeInfo.title,img: book.volumeInfo.imageLinks.smallThumbnail}))
     }
 
-    selectStatus(book)
+    else if(e.target.value==='currentlyReading'){
+      
+      setReading(reading.concat({id: reading[reading.length-1].id + 1, title: book.volumeInfo.title,img: book.volumeInfo.imageLinks.smallThumbnail}))
+console.log('reading')
+
+    }
+
+    else if(e.target.value==='read'){
+      
+console.log('read')
+setRead(read.concat({id: read[read.length-1].id + 1, title: book.volumeInfo.title,img: book.volumeInfo.imageLinks.smallThumbnail}))
+
+    }
+
 
     
  
