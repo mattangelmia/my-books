@@ -214,7 +214,14 @@ setRead(read.concat({id: read[read.length-1].id + 1, title: book.volumeInfo.titl
   return (
     <div className="App">
       <h1>My Books</h1>
-      <Link to="/find" >SearchBooks</Link>
+      <Link className="Link" to="/find" style={{ textDecoration: 'none', color: '#333', fontSize: '1.2rem', fontWeight: 'bold', borderBottom: '2px solid transparent', transition: ' color border-color 0.3s ease-in-out' }} 
+      onMouseEnter={(e) => { e.target.style.borderColor = '#333'}}
+      onMouseLeave={(e) => { e.target.style.borderColor = 'transparent' }}>
+  SearchBooks
+</Link>
+
+
+
      
     
       <Routes>
